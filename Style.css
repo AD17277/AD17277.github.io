@@ -1,0 +1,42 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: black;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid white;
+}
+
+h1 {
+    font-size: 60px;
+    color: white;
+    margin: 0;
+}
+
+h2.year {
+    font-size: 80px; /* Dimensione grande per 2021 */
+    margin: 0;
+    display: inline-block;
+    background: linear-gradient(to right, #009246, #ffffff, #ce2b37); /* Gradiente della bandiera italiana */
+    -webkit-background-clip: text; /* Questo fa sì che il gradiente venga applicato solo al testo */
+    color: transparent; /* Nasconde il colore del testo originale */
+}
+
+.subtitle-container {
+    margin-top: 10px;
+}
+
+.subtitle {
+    font-size: 20px;
+    font-style: italic;
+    color: white;
+}
+
+/* Altri stili invariati */
