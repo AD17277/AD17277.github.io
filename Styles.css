@@ -1,42 +1,67 @@
-/* General Styles */
+/* General styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: black;
-    color: white;
     margin: 0;
     padding: 0;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
 }
 
-header {
-    background-color: black;
-    padding: 20px;
+.header {
     text-align: center;
-    border-bottom: 5px solid white;
+    padding: 20px;
+    background-color: #222; /* Darker background for header */
+    border-bottom: 2px solid #fff; /* White border */
 }
 
-h1 {
-    font-size: 60px;
-    color: white;
-    margin: 0;
+.logo {
+    font-size: 3rem;
+    font-weight: bold;
 }
 
-h2.year {
-    font-size: 80px; /* Dimensione grande per 2021 */
-    margin: 0;
-    display: inline-block;
-    background: linear-gradient(to right, #009246, #ffffff, #ce2b37); /* Gradiente della bandiera italiana */
-    -webkit-background-clip: text; /* Questo fa sì che il gradiente venga applicato solo al testo */
-    color: transparent; /* Nasconde il colore del testo originale */
+.pes {
+    color: #fff;
 }
 
-.subtitle-container {
-    margin-top: 10px;
+.year {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.green {
+    color: #008000; /* Green */
+}
+
+.white {
+    color: #fff; /* White */
+}
+
+.red {
+    color: #ff0000; /* Red */
 }
 
 .subtitle {
-    font-size: 20px;
+    font-size: 1.5rem;
     font-style: italic;
-    color: white;
+    color: #fff;
 }
 
-/* Altri stili invariati */
+.content {
+    padding: 20px;
+}
+
+h2 {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
