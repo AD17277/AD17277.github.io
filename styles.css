@@ -26,18 +26,19 @@ body {
     color: white;
 }
 
+/* Stile 2021 con più bianco */
 .digit-2-green {
     color: #00ff00;
 }
 
 .digit-0-green-white {
-    background: linear-gradient(to bottom, #00ff00, white);
+    background: linear-gradient(to bottom, #00ff00, white 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .digit-2-white-red {
-    background: linear-gradient(to bottom, white, red);
+    background: linear-gradient(to bottom, white 50%, red);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -54,7 +55,8 @@ body {
 
 /* Menu buttons */
 .menu-buttons button,
-.menu ul li button {
+.menu ul li button,
+.nav-buttons button {
     background-color: #00ff00;
     color: black;
     border: none;
@@ -65,17 +67,18 @@ body {
 }
 
 .menu-buttons button:hover,
-.menu ul li button:hover {
+.menu ul li button:hover,
+.nav-buttons button:hover {
     background-color: #006600;
     color: white;
 }
 
-/* Hidden menu */
+/* Menu nascosto */
 .hidden {
     display: none;
 }
 
-/* Visible menu */
+/* Menu visibile */
 .menu {
     margin-top: 50px;
 }
