@@ -8,12 +8,11 @@ function showMenu(menuId) {
     currentMenu = menuId;
 }
 
-// Torna al menu precedente (al menu Continents)
+// Torna al menu precedente
 function goBack() {
-    if (currentMenu === "europe-menu" || currentMenu === "asia-menu" || currentMenu === "africa-menu" || currentMenu === "americas-menu" || currentMenu === "oceania-menu") {
-        showMenu("continent-menu");
-    } else if (currentMenu === "continent-menu") {
-        showMenu("main-menu");
+    if (currentMenu.endsWith("-menu")) {
+        const parentMenu = currentMenu.split("-")[0];
+        showMenu(parentMenu + "-menu");
     }
 }
 
