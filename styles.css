@@ -32,13 +32,13 @@ body {
 }
 
 .digit-0-green-white {
-    background: linear-gradient(to bottom, #00ff00, white 50%);
+    background: linear-gradient(to bottom, #00ff00, white 60%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .digit-2-white-red {
-    background: linear-gradient(to bottom, white 50%, red);
+    background: linear-gradient(to bottom, white 60%, red);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
