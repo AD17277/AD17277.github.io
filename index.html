@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Banner PES 2021 -->
+    <div class="banner">
+        <span class="pes">PES</span>
+        <span class="digit-2-green">2</span>
+        <span class="digit-0-green-white">0</span>
+        <span class="digit-2-white-red">2</span>
+        <span class="digit-1-red">1</span>
+    </div>
+
     <!-- Menu principale -->
     <div id="main-menu" class="menu">
-        <div class="title">
-            <span class="pes-2021">
-                <span class="pes">PES</span>
-                <span class="digit-2-green">2</span>
-                <span class="digit-0-green-white">0</span>
-                <span class="digit-2-white-red">2</span>
-                <span class="digit-1-red">1</span>
-            </span>
-        </div>
         <div class="subtitle">Converter</div>
         <div class="menu-buttons">
             <button onclick="showMenu('continent-menu')">Continents</button>
@@ -40,49 +40,11 @@
         </div>
     </div>
 
-    <!-- Esempio di menu Europe -->
+    <!-- Menu Vuoto Esempio -->
     <div id="europe-menu" class="menu hidden">
         <h2>Europe Leagues</h2>
         <ul>
             <li><button onclick="showMenu('premier-league-menu')">Premier League</button></li>
             <li><button onclick="showMenu('la-liga-menu')">La Liga</button></li>
-            <li><button onclick="showMenu('serie-a-menu')">Serie A</button></li>
-            <li><button onclick="showMenu('bundesliga-menu')">Bundesliga</button></li>
         </ul>
         <div class="nav-buttons">
-            <button onclick="goBack()">Back</button>
-            <button onclick="goHome()">Homepage</button>
-        </div>
-    </div>
-
-    <!-- Esempio Premier League -->
-    <div id="premier-league-menu" class="menu hidden">
-        <h2>Premier League Teams</h2>
-        <ul>
-            <li><button onclick="showMenu('manchester-united-menu')">Manchester United</button></li>
-            <li><button onclick="showMenu('chelsea-menu')">Chelsea</button></li>
-            <li><button onclick="showMenu('liverpool-menu')">Liverpool</button></li>
-        </ul>
-        <div class="nav-buttons">
-            <button onclick="goBack()">Back</button>
-            <button onclick="goHome()">Homepage</button>
-        </div>
-    </div>
-
-    <!-- Esempio Manchester United -->
-    <div id="manchester-united-menu" class="menu hidden">
-        <h2>Manchester United Players</h2>
-        <ul>
-            <li>Bruno Fernandes</li>
-            <li>Marcus Rashford</li>
-            <li>Casemiro</li>
-        </ul>
-        <div class="nav-buttons">
-            <button onclick="goBack()">Back</button>
-            <button onclick="goHome()">Homepage</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
