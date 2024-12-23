@@ -1,67 +1,86 @@
-/* General styles */
+/* Sfondo e stile generale */
 body {
+    background-color: black;
+    color: white;
     font-family: Arial, sans-serif;
+    text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #000; /* Black background */
-    color: #fff; /* White text */
 }
 
-.header {
-    text-align: center;
-    padding: 20px;
-    background-color: #222; /* Darker background for header */
-    border-bottom: 2px solid #fff; /* White border */
+/* Stile per il titolo */
+.title {
+    margin-top: 100px;
+    font-size: 80px;
+    font-weight: bold;
 }
 
-.logo {
-    font-size: 3rem;
+.pes-2021 {
+    display: inline-flex;
+    gap: 5px;
+    font-size: 100px;
     font-weight: bold;
 }
 
 .pes {
-    color: #fff;
+    color: white;
 }
 
-.year {
-    font-size: 3rem;
-    font-weight: bold;
+.digit-2-green {
+    color: #00ff00;
 }
 
-.green {
-    color: #008000; /* Green */
+.digit-0-green-white {
+    background: linear-gradient(to bottom, #00ff00, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.white {
-    color: #fff; /* White */
+.digit-2-white-red {
+    background: linear-gradient(to bottom, white, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.red {
-    color: #ff0000; /* Red */
+.digit-1-red {
+    color: red;
 }
 
 .subtitle {
-    font-size: 1.5rem;
+    margin-top: 20px;
+    font-size: 24px;
     font-style: italic;
-    color: #fff;
 }
 
-.content {
-    padding: 20px;
+/* Menu buttons */
+.menu-buttons button,
+.menu ul li button {
+    background-color: #00ff00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-h2 {
-    color: #fff;
-    border-bottom: 2px solid #fff;
-    padding-bottom: 5px;
+.menu-buttons button:hover,
+.menu ul li button:hover {
+    background-color: #006600;
+    color: white;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+/* Hidden menu */
+.hidden {
+    display: none;
 }
 
-li {
-    margin: 10px 0;
-    font-size: 1.2rem;
+/* Visible menu */
+.menu {
+    margin-top: 50px;
+}
+
+.menu h2 {
+    margin-bottom: 20px;
+    font-size: 36px;
 }
