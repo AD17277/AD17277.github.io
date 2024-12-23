@@ -4,69 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PES 2021 Converter</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .title {
-            margin-top: 100px;
-            font-size: 80px;
-            font-weight: bold;
-        }
-
-        .pes {
-            color: white;
-        }
-
-        .year {
-            display: inline-flex;
-            font-size: 100px;
-            font-weight: bold;
-        }
-
-        .digit-2-green {
-            color: #00ff00; /* Verde */
-        }
-
-        .digit-0-green-white {
-            background: linear-gradient(to bottom, #00ff00, white);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .digit-2-white-red {
-            background: linear-gradient(to bottom, white, red);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .digit-1-red {
-            color: red;
-        }
-
-        .subtitle {
-            margin-top: 20px;
-            font-size: 24px;
-            font-style: italic;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="title">
-        <span class="pes">PES</span>
-        <span class="year">
-            <span class="digit-2-green">2</span>
-            <span class="digit-0-green-white">0</span>
-            <span class="digit-2-white-red">2</span>
-            <span class="digit-1-red">1</span>
-        </span>
+    <!-- Titolo principale -->
+    <div id="main-menu" class="menu">
+        <div class="title">
+            <span class="pes-2021">
+                <span class="pes">PES</span>
+                <span class="digit-2-green">2</span>
+                <span class="digit-0-green-white">0</span>
+                <span class="digit-2-white-red">2</span>
+                <span class="digit-1-red">1</span>
+            </span>
+        </div>
+        <div class="subtitle">Converter</div>
+        <div class="menu-buttons">
+            <button onclick="showMenu('continent-menu')">Continents</button>
+        </div>
     </div>
-    <div class="subtitle">Converter</div>
+
+    <!-- Menu Continents -->
+    <div id="continent-menu" class="menu hidden">
+        <h2>Continents</h2>
+        <ul>
+            <li><button onclick="showMenu('europe-menu')">Europe</button></li>
+            <li><button onclick="showMenu('asia-menu')">Asia</button></li>
+            <li><button onclick="showMenu('africa-menu')">Africa</button></li>
+            <li><button onclick="showMenu('americas-menu')">Americas</button></li>
+            <li><button onclick="showMenu('oceania-menu')">Oceania</button></li>
+        </ul>
+        <button onclick="goBack()">Back</button>
+        <button onclick="goHome()">Homepage</button>
+    </div>
+
+    <!-- Menu Europe -->
+    <div id="europe-menu" class="menu hidden">
+        <h2>Europe Leagues</h2>
+        <ul>
+            <li>Premier League</li>
+            <li>La Liga</li>
+            <li>Serie A</li>
+            <li>Bundesliga</li>
+        </ul>
+        <button onclick="goBack()">Back</button>
+        <button onclick="goHome()">Homepage</button>
+    </div>
+
+    <!-- Altri menu possono essere aggiunti in modo simile -->
+    <script src="script.js"></script>
 </body>
 </html>
