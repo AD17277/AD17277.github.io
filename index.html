@@ -31,8 +31,23 @@
             <li><button onclick="showMenu('europe-menu')">Europe</button></li>
             <li><button onclick="showMenu('asia-menu')">Asia</button></li>
             <li><button onclick="showMenu('africa-menu')">Africa</button></li>
-            <li><button onclick="showMenu('americas-menu')">Americas</button></li>
+            <li><button onclick="showMenu('north-america-menu')">North America</button></li>
+            <li><button onclick="showMenu('south-america-menu')">South America</button></li>
             <li><button onclick="showMenu('oceania-menu')">Oceania</button></li>
+        </ul>
+        <div class="nav-buttons">
+            <button onclick="goHome()">Homepage</button>
+        </div>
+    </div>
+
+    <!-- Esempio di menu Europe -->
+    <div id="europe-menu" class="menu hidden">
+        <h2>Europe Leagues</h2>
+        <ul>
+            <li><button onclick="showMenu('premier-league-menu')">Premier League</button></li>
+            <li><button onclick="showMenu('la-liga-menu')">La Liga</button></li>
+            <li><button onclick="showMenu('serie-a-menu')">Serie A</button></li>
+            <li><button onclick="showMenu('bundesliga-menu')">Bundesliga</button></li>
         </ul>
         <div class="nav-buttons">
             <button onclick="goBack()">Back</button>
@@ -40,14 +55,27 @@
         </div>
     </div>
 
-    <!-- Menu Europe -->
-    <div id="europe-menu" class="menu hidden">
-        <h2>Europe Leagues</h2>
+    <!-- Esempio Premier League -->
+    <div id="premier-league-menu" class="menu hidden">
+        <h2>Premier League Teams</h2>
         <ul>
-            <li>Premier League</li>
-            <li>La Liga</li>
-            <li>Serie A</li>
-            <li>Bundesliga</li>
+            <li><button onclick="showMenu('manchester-united-menu')">Manchester United</button></li>
+            <li><button onclick="showMenu('chelsea-menu')">Chelsea</button></li>
+            <li><button onclick="showMenu('liverpool-menu')">Liverpool</button></li>
+        </ul>
+        <div class="nav-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="goHome()">Homepage</button>
+        </div>
+    </div>
+
+    <!-- Esempio Manchester United -->
+    <div id="manchester-united-menu" class="menu hidden">
+        <h2>Manchester United Players</h2>
+        <ul>
+            <li>Bruno Fernandes</li>
+            <li>Marcus Rashford</li>
+            <li>Casemiro</li>
         </ul>
         <div class="nav-buttons">
             <button onclick="goBack()">Back</button>
