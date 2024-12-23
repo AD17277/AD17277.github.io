@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Titolo principale -->
+    <!-- Menu principale -->
     <div id="main-menu" class="menu">
         <div class="title">
             <span class="pes-2021">
@@ -34,8 +34,10 @@
             <li><button onclick="showMenu('americas-menu')">Americas</button></li>
             <li><button onclick="showMenu('oceania-menu')">Oceania</button></li>
         </ul>
-        <button onclick="goBack()">Back</button>
-        <button onclick="goHome()">Homepage</button>
+        <div class="nav-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="goHome()">Homepage</button>
+        </div>
     </div>
 
     <!-- Menu Europe -->
@@ -47,11 +49,12 @@
             <li>Serie A</li>
             <li>Bundesliga</li>
         </ul>
-        <button onclick="goBack()">Back</button>
-        <button onclick="goHome()">Homepage</button>
+        <div class="nav-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="goHome()">Homepage</button>
+        </div>
     </div>
 
-    <!-- Altri menu possono essere aggiunti in modo simile -->
     <script src="script.js"></script>
 </body>
 </html>
