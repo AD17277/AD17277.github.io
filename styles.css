@@ -1,116 +1,43 @@
-/* Impostazioni di base */
 body {
     font-family: Arial, sans-serif;
     background-color: black;
     color: white;
-    margin: 0;
-    padding: 0;
-}
-
-/* Menu nascosto */
-.menu {
-    display: none;
     text-align: center;
     padding: 20px;
 }
 
-.hidden {
-    display: none;
-}
-
-/* Banner PES con colori della bandiera italiana */
-.header-banner h1 {
-    font-size: 60px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.pes-green {
-    color: green;
-}
-
-.pes-white {
-    background: linear-gradient(to right, white, white);
+h1, h2 {
+    font-size: 2em;
     color: white;
-    -webkit-background-clip: text;
-    background-clip: text;
 }
 
-.pes-red {
-    color: red;
-}
-
-/* Colori del menu principale */
-.menu-buttons button {
-    background-color: #333;
-    color: white;
-    font-size: 18px;
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.menu-buttons button:hover {
-    background-color: #555;
-}
-
-/* Colore per il pulsante "Home" */
 button {
-    background-color: green;
+    background-color: #4CAF50;
     color: white;
-    font-size: 18px;
+    font-size: 1.2em;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-    margin-top: 10px;
+    margin: 10px;
 }
 
 button:hover {
-    background-color: darkgreen;
+    background-color: #45a049;
 }
 
-/* Colori per le voci di menu */
-ul {
-    list-style-type: none;
-    padding: 0;
+.menu {
+    display: none;
 }
 
-ul li {
-    font-size: 20px;
-    padding: 10px;
-    background-color: #333;
-    margin: 5px 0;
-}
-
-ul li:hover {
-    background-color: #555;
-}
-
-/* Pulsante per tornare indietro */
-button.back {
-    background-color: red;
-    color: white;
-    font-size: 18px;
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-button.back:hover {
-    background-color: darkred;
-}
-
-/* Design per il menu principale */
-#main-menu {
+#homepage {
     display: block;
-    padding-top: 20px;
 }
 
-/* Design per le altre pagine */
-#europe-menu, #north-america-menu, #south-america-menu,
-#league-menu, #team-menu {
-    display: block;
-    padding-top: 20px;
+.back {
+    background-color: #f44336;
+    margin-top: 20px;
+}
+
+.back:hover {
+    background-color: #e53935;
 }
