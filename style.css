@@ -1,0 +1,116 @@
+/* Impostazioni di base */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Banner PES con colori della bandiera italiana */
+.header-banner h1 {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.pes-green {
+    color: green;
+}
+
+.pes-white {
+    background: linear-gradient(to right, white, white);
+    color: white;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.pes-red {
+    color: red;
+}
+
+/* Colori del menu principale */
+.menu-buttons button {
+    background-color: #333;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-buttons button:hover {
+    background-color: #555;
+}
+
+/* Colore per il pulsante "Home" */
+#home-button {
+    background-color: green;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+#home-button:hover {
+    background-color: darkgreen;
+}
+
+/* Colori per le voci di menu */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    font-size: 20px;
+    padding: 10px;
+    background-color: #333;
+    margin: 5px 0;
+}
+
+ul li:hover {
+    background-color: #555;
+}
+
+/* Pulsante per tornare indietro */
+#back-button {
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#back-button:hover {
+    background-color: darkred;
+}
+
+/* Design per il menu principale */
+#main-menu {
+    display: block;
+    padding-top: 20px;
+}
+
+/* Design per le altre pagine */
+#europe-menu, #north-america-menu, #south-america-menu {
+    display: block;
+    padding-top: 20px;
+}
