@@ -1,34 +1,51 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PES 2021 Converter</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Homepage: Menu principale -->
-  <div class="homepage" id="homepage">
-    <div class="banner">
-      <h1 class="pes2021-title">PES 2021</h1>
-      <p class="converter-title">Converter</p>
-    </div>
+  <header>
+    <h1 class="pes2021-title">PES <span style="color: green;">20</span><span style="color: white;">21</span><span style="color: red;"></span></h1>
+    <p class="converter-title">Converter</p>
+  </header>
 
-    <div class="menu">
-      <button onclick="openMenu('Europe')">Select Continent: Europe</button>
-      <button onclick="openMenu('South America')">Select Continent: South America</button>
-      <button onclick="openMenu('North America')">Select Continent: North America</button>
-    </div>
-  </div>
+  <main>
+    <!-- Menu Continenti -->
+    <section id="continent-menu" class="menu">
+      <h2>Select a Continent</h2>
+      <button onclick="loadLeagues('Europe')">Europe</button>
+      <button onclick="loadLeagues('South America')">South America</button>
+      <button onclick="loadLeagues('North America')">North America</button>
+      <button onclick="loadLeagues('Asia')">Asia</button>
+      <button onclick="loadLeagues('Africa')">Africa</button>
+    </section>
 
-  <!-- Menu di Continent -->
-  <div class="menu-content" id="menuContent"></div>
+    <!-- Menu Campionati -->
+    <section id="league-menu" class="menu hidden">
+      <h2>Select a League</h2>
+      <div id="league-list"></div>
+    </section>
 
-  <!-- Bottoni Home e Back -->
-  <div class="buttons" id="buttons">
-    <button id="backButton" onclick="goBack()">Back</button>
-    <button id="homeButton" onclick="goHome()">Home</button>
-  </div>
+    <!-- Menu Squadre -->
+    <section id="team-menu" class="menu hidden">
+      <h2>Select a Team</h2>
+      <div id="team-list"></div>
+    </section>
+
+    <!-- Menu Giocatori -->
+    <section id="player-menu" class="menu hidden">
+      <h2>Team Roster</h2>
+      <div id="player-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <button onclick="goHome()">Home</button>
+    <button onclick="goBack()">Back</button>
+  </footer>
 
   <script src="script.js"></script>
 </body>
