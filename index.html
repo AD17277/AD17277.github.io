@@ -8,43 +8,11 @@
 </head>
 <body>
     <div class="container">
-        <div id="homepage" class="menu">
-            <h1>PES 2021</h1>
-            <h2>Select Continent</h2>
-            <button onclick="showContinentMenu()">Europe</button>
-            <button onclick="showContinentMenu()">North America</button>
-            <button onclick="showContinentMenu()">South America</button>
-        </div>
-
-        <div id="continentMenu" class="menu" style="display:none;">
-            <button class="back" onclick="goBack('homepage')">Back</button>
-            <h2>Select League</h2>
-            <button onclick="showLeagueMenu()">UEFA Champions League</button>
-            <button onclick="showLeagueMenu()">MLS</button>
-            <button onclick="showLeagueMenu()">Brazilian Serie A</button>
-        </div>
-
-        <div id="leagueMenu" class="menu" style="display:none;">
-            <button class="back" onclick="goBack('continentMenu')">Back</button>
-            <h2>Select Team</h2>
-            <button onclick="showTeamMenu()">Team A</button>
-            <button onclick="showTeamMenu()">Team B</button>
-        </div>
-
-        <div id="teamMenu" class="menu" style="display:none;">
-            <button class="back" onclick="goBack('leagueMenu')">Back</button>
-            <h2>Player Roster</h2>
-            <button onclick="showPlayerDetails()">Player 1</button>
-            <button onclick="showPlayerDetails()">Player 2</button>
-        </div>
-
-        <div id="playerDetails" class="menu" style="display:none;">
-            <button class="back" onclick="goBack('teamMenu')">Back</button>
-            <h2>Player Info</h2>
-            <p>Details about the player will be shown here.</p>
-        </div>
+        <h1 class="title">
+            PES <span class="italy-colors">2<span class="white-red">0</span><span class="white-red">2</span><span class="red">1</span></span>
+        </h1>
+        <h2>Select Continent</h2>
+        <a href="continent.html"><button>Go to Continents</button></a>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
