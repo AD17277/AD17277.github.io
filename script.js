@@ -1,84 +1,86 @@
-// Funzione per aprire il menu di un continente
-function openMenu(menuName) {
-  document.querySelector('.homepage').style.display = 'none';
-  document.querySelector('.buttons').style.display = 'block';
-  let menuContent = '';
+let historyStack = []; // For tracking navigation history
 
-  // Contenuti per ciascun continente
-  if (menuName === 'Europe') {
-    menuContent = `
-      <p>Select League:</p>
-      <button onclick="selectLeague('Premier League')">Premier League</button>
-      <button onclick="selectLeague('La Liga')">La Liga</button>
-      <button onclick="selectLeague('Serie A')">Serie A</button>
-    `;
-  } else if (menuName === 'South America') {
-    menuContent = `
-      <p>Select League:</p>
-      <button onclick="selectLeague('Brasileirão')">Brasileirão</button>
-      <button onclick="selectLeague('Argentine Primera División')">Argentine Primera División</button>
-    `;
-  } else if (menuName === 'North America') {
-    menuContent = `
-      <p>Select League:</p>
-      <button onclick="selectLeague('MLS')">MLS</button>
-      <button onclick="selectLeague('Liga MX')">Liga MX</button>
-    `;
-  }
-
-  document.getElementById('menuContent').innerHTML = menuContent;
-  document.getElementById('backButton').style.display = 'block';
-}
-
-// Funzione per selezionare una lega
-function selectLeague(leagueName) {
-  let leagueContent = '';
-  if (leagueName === 'Premier League') {
-    leagueContent = `
-      <p>Select Team:</p>
-      <button onclick="selectTeam('Liverpool')">Liverpool</button>
-      <button onclick="selectTeam('Manchester City')">Manchester City</button>
-    `;
-  } else if (leagueName === 'Brasileirão') {
-    leagueContent = `
-      <p>Select Team:</p>
-      <button onclick="selectTeam('Flamengo')">Flamengo</button>
-      <button onclick="selectTeam('São Paulo')">São Paulo</button>
-    `;
-  } else if (leagueName === 'MLS') {
-    leagueContent = `
-      <p>Select Team:</p>
-      <button onclick="selectTeam('Los Angeles FC')">Los Angeles FC</button>
-      <button onclick="selectTeam('New York City FC')">New York City FC</button>
-    `;
-  }
-
-  document.getElementById('menuContent').innerHTML = leagueContent;
-  document.getElementById('backButton').style.display = 'block';
-}
-
-// Funzione per selezionare una squadra
-function selectTeam(teamName) {
-  let teamContent = `<p>Team: ${teamName}</p>`;
-  teamContent += `
-    <p>Select Player:</p>
-    <button>Player 1</button>
-    <button>Player 2</button>
-  `;
-  document.getElementById('menuContent').innerHTML = teamContent;
-  document.getElementById('backButton').style.display = 'block';
-}
-
-// Funzione per tornare al menu principale
-function goBack() {
-  document.querySelector('.homepage').style.display = 'block';
-  document.getElementById('menuContent').innerHTML = '';
-  document.getElementById('backButton').style.display = 'none';
-}
-
-// Funzione per tornare alla homepage
 function goHome() {
-  document.querySelector('.homepage').style.display = 'block';
-  document.getElementById('menuContent').innerHTML = '';
-  document.getElementById('backButton').style.display = 'none';
+  historyStack = [];
+  showMenu('continent-menu');
+}
+
+function goBack() {
+  if (historyStack.length > 0) {
+    const previousMenu = historyStack.pop();
+    showMenu(previousMenu);
+  }
+}
+
+function showMenu(menuId) {
+  const menus = document.querySelectorAll('.menu');
+  menus.forEach(menu => menu.classList.add('hidden'));
+  document.getElementById(menuId).classList.remove('hidden');
+}
+
+function loadLeagues(continent) {
+  historyStack.push('continent-menu');
+  showMenu('league-menu');
+
+  const leagues = {
+    "Europe": ["Premier League", "La Liga", "Bundesliga", "Serie A", "Ligue 1"],
+    "South America": ["Brasileirão", "Argentine Primera"],
+    "North America": ["MLS", "Liga MX"],
+    "Asia": ["J-League", "K-League"],
+    "Africa": ["CAF Champions League"]
+  };
+
+  const leagueList = document.getElementById('league-list');
+  leagueList.innerHTML = '';
+  if (leagues[continent]) {
+    leagues[continent].forEach(league => {
+      const button = document.createElement('button');
+      button.textContent = league;
+      button.onclick = () => loadTeams(league);
+      leagueList.appendChild(button);
+    });
+  }
+}
+
+function loadTeams(league) {
+  historyStack.push('league-menu');
+  showMenu('team-menu');
+
+  const teams = {
+    "Premier League": ["Manchester City", "Liverpool", "Arsenal", "Chelsea"],
+    "La Liga": ["Barcelona", "Real Madrid", "Atletico Madrid"],
+    // Add more teams here for other leagues
+  };
+
+  const teamList = document.getElementById('team-list');
+  teamList.innerHTML = '';
+  if (teams[league]) {
+    teams[league].forEach(team => {
+      const button = document.createElement('button');
+      button.textContent = team;
+      button.onclick = () => loadPlayers(team);
+      teamList.appendChild(button);
+    });
+  }
+}
+
+function loadPlayers(team) {
+  historyStack.push('team-menu');
+  showMenu('player-menu');
+
+  const players = {
+    "Manchester City": ["Player 1", "Player 2", "Player 3"],
+    "Barcelona": ["Player A", "Player B", "Player C"],
+    // Add more players for other teams
+  };
+
+  const playerList = document.getElementById('player-list');
+  playerList.innerHTML = '';
+  if (players[team]) {
+    players[team].forEach(player => {
+      const div = document.createElement('div');
+      div.textContent = player;
+      playerList.appendChild(div);
+    });
+  }
 }
