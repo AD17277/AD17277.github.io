@@ -1,29 +1,52 @@
-// Cronologia dei menu visitati
-let menuHistory = [];
+// Funzione per aprire e chiudere i menu
+function toggleMenu(menuId) {
+    // Nasconde tutti i menu
+    const allMenus = document.querySelectorAll('.menu');
+    allMenus.forEach(menu => {
+        menu.classList.add('hidden');
+    });
 
-// Mostra un menu specifico
-function showMenu(menuId) {
-    // Aggiungi l'attuale menu alla cronologia prima di cambiare
-    if (menuHistory.length === 0 || menuHistory[menuHistory.length - 1] !== menuId) {
-        menuHistory.push(menuId);
-    }
-
-    // Nascondi il menu attuale e mostra quello selezionato
-    document.querySelectorAll('.hidden').forEach(menu => menu.classList.add('hidden'));
-    document.getElementById(menuId).classList.remove('hidden');
+    // Mostra il menu selezionato
+    const menuToShow = document.getElementById(menuId);
+    menuToShow.classList.remove('hidden');
 }
 
-// Torna al menu precedente
-function goBack() {
-    if (menuHistory.length > 1) {
-        menuHistory.pop(); // Rimuovi l'ultimo menu visitato
-        const previousMenu = menuHistory[menuHistory.length - 1];
-        showMenu(previousMenu); // Torna al menu precedente
-    }
-}
-
-// Torna alla homepage
+// Funzione per tornare alla home
 function goHome() {
-    menuHistory = []; // Resetta la cronologia
-    showMenu('main-menu'); // Torna al menu principale
+    // Nasconde tutti i menu e mostra la home
+    const allMenus = document.querySelectorAll('.menu');
+    allMenus.forEach(menu => {
+        menu.classList.add('hidden');
+    });
+
+    // Mostra il menu principale
+    const mainMenu = document.getElementById('main-menu');
+    mainMenu.classList.remove('hidden');
 }
+
+// Aggiungi gli eventi ai pulsanti per il navigare tra le sezioni
+document.addEventListener('DOMContentLoaded', function () {
+    // Pulsante Home
+    const homeButton = document.getElementById('home-button');
+    homeButton.addEventListener('click', goHome);
+
+    // Pulsanti per i continenti
+    const europeButton = document.getElementById('europe-button');
+    europeButton.addEventListener('click', function () {
+        toggleMenu('europe-menu');
+    });
+
+    const northAmericaButton = document.getElementById('north-america-button');
+    northAmericaButton.addEventListener('click', function () {
+        toggleMenu('north-america-menu');
+    });
+
+    const southAmericaButton = document.getElementById('south-america-button');
+    southAmericaButton.addEventListener('click', function () {
+        toggleMenu('south-america-menu');
+    });
+
+    // Pulsante per il ritorno al menu principale da un menu secondario
+    const backButton = document.getElementById('back-button');
+    backButton.addEventListener('click', goHome);
+});
