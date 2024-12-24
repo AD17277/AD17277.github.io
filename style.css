@@ -1,60 +1,93 @@
+/* Stile globale */
 body {
-    font-family: Arial, sans-serif;
-    background-color: black;
-    color: white;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
 }
 
-.header {
-    padding: 20px;
+h1, p {
+  margin: 0;
+  padding: 0;
 }
 
-.title {
-    font-size: 48px;
-    margin: 0;
+h1.pes2021-title {
+  font-size: 50px;
+  color: white;
+  text-align: center;
+  background: linear-gradient(to right, green, white, red);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-.subtitle {
-    font-size: 24px;
-    font-style: italic;
-    margin-top: 10px;
+p.converter-title {
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  background-color: black;
 }
 
 .menu {
-    margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
 }
 
-.instructions {
-    font-size: 18px;
-    margin-bottom: 10px;
+.menu button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  margin: 10px;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+.menu button:hover {
+  background-color: #555;
 }
 
-ul li {
-    margin: 10px 0;
-    font-size: 18px;
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
 }
 
-.navigation-buttons {
-    margin: 20px;
+.buttons button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-button {
-    background-color: white;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 5px;
+.buttons button:hover {
+  background-color: #555;
 }
 
-button:hover {
-    background-color: gray;
+#backButton {
+  display: none;
+}
+
+#menuContent {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#menuContent button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  margin: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#menuContent button:hover {
+  background-color: #555;
 }
