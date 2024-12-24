@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PES 2021 Converter</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="header">
         <h1 class="title">
-            PES <span class="italy-colors">2<span class="white-red">0</span><span class="white-red">2</span><span class="red">1</span></span>
+            PES <span class="year">
+                <span style="color: green;">2</span>
+                <span style="color: green; background: linear-gradient(to bottom, green, white); -webkit-background-clip: text; color: transparent;">0</span>
+                <span style="color: white; background: linear-gradient(to bottom, white, red); -webkit-background-clip: text; color: transparent;">2</span>
+                <span style="color: red;">1</span>
+            </span>
         </h1>
-        <h2>Select Continent</h2>
-        <a href="continent.html"><button>Go to Continents</button></a>
+        <p class="subtitle">Converter</p>
     </div>
+
+    <div class="menu">
+        <p class="instructions">Choose a continent:</p>
+        <ul id="continent-menu">
+            <!-- Continents will be dynamically added by JavaScript -->
+        </ul>
+    </div>
+
+    <div class="navigation-buttons">
+        <button id="home-btn" onclick="goHome()">Home</button>
+        <button id="back-btn" onclick="goBack()">Back</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
