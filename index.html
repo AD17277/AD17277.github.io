@@ -7,83 +7,42 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Home menu -->
-    <div id="main-menu" class="menu">
-        <div class="header-banner">
-            <h1>PES <span class="pes-green">20</span><span class="pes-white">21</span></h1>
+    <div class="container">
+        <div id="homepage" class="menu">
+            <h1>PES 2021</h1>
+            <h2>Select Continent</h2>
+            <button onclick="showContinentMenu()">Europe</button>
+            <button onclick="showContinentMenu()">North America</button>
+            <button onclick="showContinentMenu()">South America</button>
         </div>
-        <h2>Choose a continent</h2>
-        <div class="menu-buttons">
-            <button id="europe-button">Europe</button>
-            <button id="north-america-button">North America</button>
-            <button id="south-america-button">South America</button>
-        </div>
-    </div>
 
-    <!-- Europe menu -->
-    <div id="europe-menu" class="menu hidden">
-        <div class="header-banner">
-            <h1>Choose a league in Europe</h1>
+        <div id="continentMenu" class="menu" style="display:none;">
+            <button class="back" onclick="goBack('homepage')">Back</button>
+            <h2>Select League</h2>
+            <button onclick="showLeagueMenu()">UEFA Champions League</button>
+            <button onclick="showLeagueMenu()">MLS</button>
+            <button onclick="showLeagueMenu()">Brazilian Serie A</button>
         </div>
-        <button id="back-button-main">Back to continents</button>
-        <button id="home-button">Home</button>
-        <ul>
-            <li>England</li>
-            <li>Spain</li>
-            <li>Germany</li>
-        </ul>
-    </div>
 
-    <!-- North America menu -->
-    <div id="north-america-menu" class="menu hidden">
-        <div class="header-banner">
-            <h1>Choose a league in North America</h1>
+        <div id="leagueMenu" class="menu" style="display:none;">
+            <button class="back" onclick="goBack('continentMenu')">Back</button>
+            <h2>Select Team</h2>
+            <button onclick="showTeamMenu()">Team A</button>
+            <button onclick="showTeamMenu()">Team B</button>
         </div>
-        <button id="back-button-main">Back to continents</button>
-        <button id="home-button">Home</button>
-        <ul>
-            <li>USA</li>
-            <li>Mexico</li>
-            <li>Canada</li>
-        </ul>
-    </div>
 
-    <!-- South America menu -->
-    <div id="south-america-menu" class="menu hidden">
-        <div class="header-banner">
-            <h1>Choose a league in South America</h1>
+        <div id="teamMenu" class="menu" style="display:none;">
+            <button class="back" onclick="goBack('leagueMenu')">Back</button>
+            <h2>Player Roster</h2>
+            <button onclick="showPlayerDetails()">Player 1</button>
+            <button onclick="showPlayerDetails()">Player 2</button>
         </div>
-        <button id="back-button-main">Back to continents</button>
-        <button id="home-button">Home</button>
-        <ul>
-            <li>Brazil</li>
-            <li>Argentina</li>
-            <li>Chile</li>
-        </ul>
-    </div>
 
-    <!-- League menu (for selected league) -->
-    <div id="league-menu" class="menu hidden">
-        <div class="header-banner">
-            <h1>Choose a team</h1>
+        <div id="playerDetails" class="menu" style="display:none;">
+            <button class="back" onclick="goBack('teamMenu')">Back</button>
+            <h2>Player Info</h2>
+            <p>Details about the player will be shown here.</p>
         </div>
-        <button id="back-button-league">Back to leagues</button>
-        <button id="home-button-league">Home</button>
-        <ul>
-            <!-- Dynamically filled -->
-        </ul>
-    </div>
-
-    <!-- Team menu (for selected team) -->
-    <div id="team-menu" class="menu hidden">
-        <div class="header-banner">
-            <h1>Team Squad</h1>
-        </div>
-        <button id="back-button-team">Back to teams</button>
-        <button id="home-button-team">Home</button>
-        <ul>
-            <!-- Dynamically filled -->
-        </ul>
     </div>
 
     <script src="script.js"></script>
