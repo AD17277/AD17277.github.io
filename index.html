@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,44 +7,47 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Banner PES 2021 -->
-    <div class="banner">
-        <span class="pes">PES</span>
-        <span class="digit-2-green">2</span>
-        <span class="digit-0-green-white">0</span>
-        <span class="digit-2-white-red">2</span>
-        <span class="digit-1-red">1</span>
+    <div id="main-menu">
+        <h1>PES 2021 Converter</h1>
+        <button onclick="showMenu('europe-menu')">Campionati Europei</button>
+        <button onclick="showMenu('north-america-menu')">Campionati Nord America</button>
+        <button onclick="showMenu('south-america-menu')">Campionati Sud America</button>
     </div>
 
-    <!-- Menu principale -->
-    <div id="main-menu" class="menu">
-        <div class="subtitle">Converter</div>
-        <div class="menu-buttons">
-            <button onclick="showMenu('continent-menu')">Continents</button>
-        </div>
+    <div id="europe-menu" class="hidden">
+        <button onclick="goBack()">Back</button>
+        <h2>Campionati Europei</h2>
+        <button onclick="showMenu('france-menu')">Francia</button>
+        <button onclick="showMenu('germany-menu')">Germania</button>
     </div>
 
-    <!-- Menu Continents -->
-    <div id="continent-menu" class="menu hidden">
-        <h2>Continents</h2>
-        <ul>
-            <li><button onclick="showMenu('europe-menu')">Europe</button></li>
-            <li><button onclick="showMenu('asia-menu')">Asia</button></li>
-            <li><button onclick="showMenu('africa-menu')">Africa</button></li>
-            <li><button onclick="showMenu('north-america-menu')">North America</button></li>
-            <li><button onclick="showMenu('south-america-menu')">South America</button></li>
-            <li><button onclick="showMenu('oceania-menu')">Oceania</button></li>
-        </ul>
-        <div class="nav-buttons">
-            <button onclick="goHome()">Homepage</button>
-        </div>
+    <div id="north-america-menu" class="hidden">
+        <button onclick="goBack()">Back</button>
+        <h2>Campionati Nord America</h2>
+        <button onclick="showMenu('usa-menu')">USA</button>
     </div>
 
-    <!-- Menu Vuoto Esempio -->
-    <div id="europe-menu" class="menu hidden">
-        <h2>Europe Leagues</h2>
-        <ul>
-            <li><button onclick="showMenu('premier-league-menu')">Premier League</button></li>
-            <li><button onclick="showMenu('la-liga-menu')">La Liga</button></li>
-        </ul>
-        <div class="nav-buttons">
+    <div id="south-america-menu" class="hidden">
+        <button onclick="goBack()">Back</button>
+        <h2>Campionati Sud America</h2>
+        <button onclick="showMenu('brazil-menu')">Brasile</button>
+    </div>
+
+    <!-- Altri menu per squadre e giocatori -->
+    <div id="france-menu" class="hidden">
+        <button onclick="goBack()">Back</button>
+        <h3>Francia</h3>
+        <!-- Aggiungi squadre e giocatori per la Francia qui -->
+    </div>
+
+    <div id="germany-menu" class="hidden">
+        <button onclick="goBack()">Back</button>
+        <h3>Germania</h3>
+        <!-- Aggiungi squadre e giocatori per la Germania qui -->
+    </div>
+
+    <!-- Più menu a seconda delle squadre e dei giocatori -->
+
+    <script src="scripts.js"></script>
+</body>
+</html>
