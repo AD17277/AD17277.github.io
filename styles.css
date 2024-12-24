@@ -3,60 +3,48 @@ body {
     background-color: black;
     color: white;
     text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
     padding: 20px;
 }
 
-h1.title {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: white;
+.title {
+    font-size: 48px;
+    margin: 0;
 }
 
-.italy-colors {
-    display: inline-block;
-    font-weight: bold;
+.subtitle {
+    font-size: 24px;
+    font-style: italic;
+    margin-top: 10px;
 }
 
-.italy-colors .white-red {
-    background: linear-gradient(to bottom, white, red);
-    -webkit-background-clip: text;
-    color: transparent;
+.menu {
+    margin: 20px;
 }
 
-.italy-colors .red {
-    color: red;
+.instructions {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
-h2 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
+.navigation-buttons {
+    margin: 20px;
 }
 
 button {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 1.2em;
-    padding: 10px 20px;
+    background-color: white;
+    color: black;
     border: none;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-    margin: 10px;
+    margin: 5px;
 }
 
 button:hover {
-    background-color: #45a049;
-}
-
-.navigation button {
-    background-color: #f44336;
-    margin-top: 20px;
-}
-
-.navigation button:hover {
-    background-color: #e53935;
-}
-
-.container {
-    margin: auto;
-    max-width: 600px;
-    text-align: center;
+    background-color: gray;
 }
