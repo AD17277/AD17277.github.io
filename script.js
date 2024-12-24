@@ -1,36 +1,29 @@
 // Cronologia dei menu visitati
 let menuHistory = [];
 
-// Variabile per il menu attuale
-let currentMenu = "main-menu";
-
 // Mostra un menu specifico
 function showMenu(menuId) {
     // Aggiungi l'attuale menu alla cronologia prima di cambiare
-    if (currentMenu !== menuId) {
-        menuHistory.push(currentMenu);
+    if (menuHistory.length === 0 || menuHistory[menuHistory.length - 1] !== menuId) {
+        menuHistory.push(menuId);
     }
 
     // Nascondi il menu attuale e mostra quello selezionato
-    document.getElementById(currentMenu).classList.add("hidden");
-    document.getElementById(menuId).classList.remove("hidden");
-    currentMenu = menuId;
+    document.querySelectorAll('.hidden').forEach(menu => menu.classList.add('hidden'));
+    document.getElementById(menuId).classList.remove('hidden');
 }
 
 // Torna al menu precedente
 function goBack() {
-    if (menuHistory.length > 0) {
-        // Rimuovi l'ultimo elemento dalla cronologia e torna al menu precedente
-        const previousMenu = menuHistory.pop();
-        document.getElementById(currentMenu).classList.add("hidden");
-        document.getElementById(previousMenu).classList.remove("hidden");
-        currentMenu = previousMenu;
+    if (menuHistory.length > 1) {
+        menuHistory.pop(); // Rimuovi l'ultimo menu visitato
+        const previousMenu = menuHistory[menuHistory.length - 1];
+        showMenu(previousMenu); // Torna al menu precedente
     }
 }
 
 // Torna alla homepage
 function goHome() {
-    // Resetta la cronologia e torna al menu principale
-    menuHistory = [];
-    showMenu("main-menu");
+    menuHistory = []; // Resetta la cronologia
+    showMenu('main-menu'); // Torna al menu principale
 }
