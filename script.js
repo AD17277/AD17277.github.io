@@ -27,8 +27,10 @@ function goHome() {
 // Aggiungi gli eventi ai pulsanti per il navigare tra le sezioni
 document.addEventListener('DOMContentLoaded', function () {
     // Pulsante Home
-    const homeButton = document.getElementById('home-button');
-    homeButton.addEventListener('click', goHome);
+    const homeButton = document.querySelectorAll('.home-button');
+    homeButton.forEach(button => {
+        button.addEventListener('click', goHome);
+    });
 
     // Pulsanti per i continenti
     const europeButton = document.getElementById('europe-button');
@@ -46,7 +48,19 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleMenu('south-america-menu');
     });
 
-    // Pulsante per il ritorno al menu principale da un menu secondario
-    const backButton = document.getElementById('back-button');
-    backButton.addEventListener('click', goHome);
+    // Pulsante per il ritorno al menu principale
+    const backButtonMain = document.getElementById('back-button-main');
+    backButtonMain.addEventListener('click', goHome);
+
+    // Pulsante per tornare al menu delle leghe
+    const backButtonLeague = document.getElementById('back-button-league');
+    backButtonLeague.addEventListener('click', function () {
+        toggleMenu('league-menu');
+    });
+
+    // Pulsante per tornare al menu delle squadre
+    const backButtonTeam = document.getElementById('back-button-team');
+    backButtonTeam.addEventListener('click', function () {
+        toggleMenu('team-menu');
+    });
 });
