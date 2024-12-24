@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PES 2021 Converter</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Collega il CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Home menu -->
@@ -12,6 +12,7 @@
         <div class="header-banner">
             <h1>PES <span class="pes-green">20</span><span class="pes-white">21</span></h1>
         </div>
+        <h2>Choose a continent</h2>
         <div class="menu-buttons">
             <button id="europe-button">Europe</button>
             <button id="north-america-button">North America</button>
@@ -22,9 +23,10 @@
     <!-- Europe menu -->
     <div id="europe-menu" class="menu hidden">
         <div class="header-banner">
-            <h1>Europe</h1>
+            <h1>Choose a league in Europe</h1>
         </div>
-        <button id="back-button">Back</button>
+        <button id="back-button-main">Back to continents</button>
+        <button id="home-button">Home</button>
         <ul>
             <li>England</li>
             <li>Spain</li>
@@ -35,9 +37,10 @@
     <!-- North America menu -->
     <div id="north-america-menu" class="menu hidden">
         <div class="header-banner">
-            <h1>North America</h1>
+            <h1>Choose a league in North America</h1>
         </div>
-        <button id="back-button">Back</button>
+        <button id="back-button-main">Back to continents</button>
+        <button id="home-button">Home</button>
         <ul>
             <li>USA</li>
             <li>Mexico</li>
@@ -48,9 +51,10 @@
     <!-- South America menu -->
     <div id="south-america-menu" class="menu hidden">
         <div class="header-banner">
-            <h1>South America</h1>
+            <h1>Choose a league in South America</h1>
         </div>
-        <button id="back-button">Back</button>
+        <button id="back-button-main">Back to continents</button>
+        <button id="home-button">Home</button>
         <ul>
             <li>Brazil</li>
             <li>Argentina</li>
@@ -58,9 +62,30 @@
         </ul>
     </div>
 
-    <!-- Pulsante per tornare alla home -->
-    <button id="home-button">Home</button>
+    <!-- League menu (for selected league) -->
+    <div id="league-menu" class="menu hidden">
+        <div class="header-banner">
+            <h1>Choose a team</h1>
+        </div>
+        <button id="back-button-league">Back to leagues</button>
+        <button id="home-button-league">Home</button>
+        <ul>
+            <!-- Dynamically filled -->
+        </ul>
+    </div>
 
-    <script src="script.js"></script> <!-- Collega il JavaScript -->
+    <!-- Team menu (for selected team) -->
+    <div id="team-menu" class="menu hidden">
+        <div class="header-banner">
+            <h1>Team Squad</h1>
+        </div>
+        <button id="back-button-team">Back to teams</button>
+        <button id="home-button-team">Home</button>
+        <ul>
+            <!-- Dynamically filled -->
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
