@@ -6,9 +6,30 @@ body {
     padding: 20px;
 }
 
-h1, h2 {
-    font-size: 2em;
+h1.title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
     color: white;
+}
+
+.italy-colors {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.italy-colors .white-red {
+    background: linear-gradient(to bottom, white, red);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.italy-colors .red {
+    color: red;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
 }
 
 button {
@@ -25,19 +46,17 @@ button:hover {
     background-color: #45a049;
 }
 
-.menu {
-    display: none;
-}
-
-#homepage {
-    display: block;
-}
-
-.back {
+.navigation button {
     background-color: #f44336;
     margin-top: 20px;
 }
 
-.back:hover {
+.navigation button:hover {
     background-color: #e53935;
+}
+
+.container {
+    margin: auto;
+    max-width: 600px;
+    text-align: center;
 }
