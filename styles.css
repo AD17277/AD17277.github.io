@@ -1,79 +1,56 @@
-/* Stile base per nascondere i menu */
-.hidden {
-    display: none;
-}
-
-/* Layout della pagina */
 body {
     font-family: Arial, sans-serif;
-    background-color: #000; /* Sfondo nero */
+    background-color: black;
     color: white;
     margin: 0;
     padding: 0;
 }
 
-/* Menu principale */
-#main-menu {
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Stile per i pulsanti */
-button {
-    background-color: #333; /* Colore di sfondo del pulsante */
+h1, h2 {
     color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 25px;
-    font-size: 16px;
-    margin: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    text-align: center;
 }
 
-/* Cambia il colore dei pulsanti quando passiamo sopra con il mouse */
-button:hover {
+.menu {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.menu button {
+    background-color: #333;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.menu button:hover {
     background-color: #555;
 }
 
-/* Stile per i titoli (PES 2021 banner) */
-h1, h2, h3 {
-    text-align: center;
-    font-size: 32px;
+#main-menu {
+    display: block;
 }
 
-/* Stile per la scritta PES 2021 con colori sfumati */
-h1 {
-    font-size: 60px;
-    background: linear-gradient(90deg, #008000, #ffffff, #ff0000);
-    -webkit-background-clip: text;
-    color: transparent;
+.hidden {
+    display: none;
 }
 
-/* Formattazione dei menu secondari */
-div {
-    text-align: center;
-    padding: 20px;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-div h2, div h3 {
-    color: white;
+ul li {
+    font-size: 20px;
+    padding: 10px;
+    background-color: #333;
+    margin: 5px 0;
 }
 
-div button {
-    width: 200px; /* Pulsanti più grandi */
-    font-size: 18px;
-}
-
-/* Separazione dei menu in base ai continenti */
-#europe-menu, #north-america-menu, #south-america-menu {
-    background-color: #111;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-/* Altri stili per il layout dei tasti */
-#back-button {
-    font-size: 18px;
-    margin-top: 20px;
+ul li:hover {
+    background-color: #555;
 }
