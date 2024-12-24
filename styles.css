@@ -1,88 +1,79 @@
-/* Sfondo e stile generale */
+/* Stile base per nascondere i menu */
+.hidden {
+    display: none;
+}
+
+/* Layout della pagina */
 body {
-    background-color: black;
-    color: white;
     font-family: Arial, sans-serif;
-    text-align: center;
+    background-color: #000; /* Sfondo nero */
+    color: white;
     margin: 0;
     padding: 0;
 }
 
-/* Banner PES 2021 */
-.banner {
-    background-color: black;
-    padding: 20px 0;
-    font-size: 50px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.banner .pes {
-    color: white;
-}
-
-.banner .digit-2-green {
-    color: #00ff00;
-}
-
-.banner .digit-0-green-white {
-    background: linear-gradient(to bottom, #00ff00, white 60%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.banner .digit-2-white-red {
-    background: linear-gradient(to bottom, white 60%, red);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.banner .digit-1-red {
-    color: red;
-}
-
-/* Ottimizzazione per dispositivi mobili */
-@media (max-width: 600px) {
-    .banner {
-        font-size: 30px;
-    }
-}
-
-/* Menu generale */
-.menu {
+/* Menu principale */
+#main-menu {
+    text-align: center;
     margin-top: 20px;
 }
 
-.menu h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-/* Pulsanti */
-.menu-buttons button,
-.nav-buttons button {
-    background-color: #00ff00;
-    color: black;
+/* Stile per i pulsanti */
+button {
+    background-color: #333; /* Colore di sfondo del pulsante */
+    color: white;
     border: none;
-    padding: 10px 20px;
+    border-radius: 5px;
+    padding: 15px 25px;
+    font-size: 16px;
     margin: 10px;
-    font-size: 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.menu-buttons button:hover,
-.nav-buttons button:hover {
-    background-color: #006600;
+/* Cambia il colore dei pulsanti quando passiamo sopra con il mouse */
+button:hover {
+    background-color: #555;
+}
+
+/* Stile per i titoli (PES 2021 banner) */
+h1, h2, h3 {
+    text-align: center;
+    font-size: 32px;
+}
+
+/* Stile per la scritta PES 2021 con colori sfumati */
+h1 {
+    font-size: 60px;
+    background: linear-gradient(90deg, #008000, #ffffff, #ff0000);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Formattazione dei menu secondari */
+div {
+    text-align: center;
+    padding: 20px;
+}
+
+div h2, div h3 {
     color: white;
 }
 
-/* Menu nascosto */
-.hidden {
-    display: none;
+div button {
+    width: 200px; /* Pulsanti più grandi */
+    font-size: 18px;
+}
+
+/* Separazione dei menu in base ai continenti */
+#europe-menu, #north-america-menu, #south-america-menu {
+    background-color: #111;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Altri stili per il layout dei tasti */
+#back-button {
+    font-size: 18px;
+    margin-top: 20px;
 }
