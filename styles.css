@@ -7,6 +7,7 @@ body {
     padding: 0;
 }
 
+/* Menu nascosto */
 .menu {
     display: none;
     text-align: center;
@@ -55,19 +56,17 @@ body {
 }
 
 /* Colore per il pulsante "Home" */
-#home-button {
+button {
     background-color: green;
     color: white;
     font-size: 18px;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+    margin-top: 10px;
 }
 
-#home-button:hover {
+button:hover {
     background-color: darkgreen;
 }
 
@@ -89,7 +88,7 @@ ul li:hover {
 }
 
 /* Pulsante per tornare indietro */
-#back-button {
+button.back {
     background-color: red;
     color: white;
     font-size: 18px;
@@ -99,7 +98,7 @@ ul li:hover {
     cursor: pointer;
 }
 
-#back-button:hover {
+button.back:hover {
     background-color: darkred;
 }
 
@@ -110,7 +109,8 @@ ul li:hover {
 }
 
 /* Design per le altre pagine */
-#europe-menu, #north-america-menu, #south-america-menu {
+#europe-menu, #north-america-menu, #south-america-menu,
+#league-menu, #team-menu {
     display: block;
     padding-top: 20px;
 }
