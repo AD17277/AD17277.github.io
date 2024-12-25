@@ -1,52 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PES 2021 Converter</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PES Data Converter</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1 class="pes2021-title">PES <span style="color: green;">20</span><span style="color: white;">21</span><span style="color: red;"></span></h1>
-    <p class="converter-title">Converter</p>
-  </header>
+    <div class="container">
+        <h1>PES Data Converter</h1>
+        <div class="tabs">
+            <button class="tablink" onclick="openTab('players', event)">Players</button>
+            <button class="tablink" onclick="openTab('teams', event)">Teams</button>
+            <button class="tablink" onclick="openTab('leagues', event)">Leagues</button>
+            <button class="tablink" onclick="openTab('settings', event)">Settings</button>
+        </div>
 
-  <main>
-    <!-- Menu Continenti -->
-    <section id="continent-menu" class="menu">
-      <h2>Select a Continent</h2>
-      <button onclick="loadLeagues('Europe')">Europe</button>
-      <button onclick="loadLeagues('South America')">South America</button>
-      <button onclick="loadLeagues('North America')">North America</button>
-      <button onclick="loadLeagues('Asia')">Asia</button>
-      <button onclick="loadLeagues('Africa')">Africa</button>
-    </section>
+        <div id="players" class="tabcontent">
+            <div class="search-container">
+                <input type="text" id="playerSearch" placeholder="Search for players...">
+                <button onclick="searchPlayers()">Search</button>
+            </div>
+            <table id="playersTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable('playersTable', 0)">ID</th>
+                        <th onclick="sortTable('playersTable', 1)">Name</th>
+                        <th onclick="sortTable('playersTable', 2)">Nationality</th>
+                        <th onclick="sortTable('playersTable', 3)">Overall (PES 21)</th>
+                        <th onclick="sortTable('playersTable', 4)">Potential (PES 21)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Player data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
 
-    <!-- Menu Campionati -->
-    <section id="league-menu" class="menu hidden">
-      <h2>Select a League</h2>
-      <div id="league-list"></div>
-    </section>
+        <div id="teams" class="tabcontent">
+            <div class="search-container">
+                <input type="text" id="teamSearch" placeholder="Search for teams...">
+                <button onclick="searchTeams()">Search</button>
+            </div>
+            <table id="teamsTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable('teamsTable', 0)">ID</th>
+                        <th onclick="sortTable('teamsTable', 1)">Name</th>
+                        <th onclick="sortTable('teamsTable', 2)">League</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Team data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="leagues" class="tabcontent">
+            <table id="leaguesTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable('leaguesTable', 0)">ID</th>
+                        <th onclick="sortTable('leaguesTable', 1)">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- League data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
 
-    <!-- Menu Squadre -->
-    <section id="team-menu" class="menu hidden">
-      <h2>Select a Team</h2>
-      <div id="team-list"></div>
-    </section>
+        <div id="settings" class="tabcontent">
+            <h3>Settings</h3>
+            <p>API Key: <input type="text" id="apiKey" placeholder="Enter your SoFIFA API key"></p>
+            <button onclick="saveSettings()">Save Settings</button>
+        </div>
+    </div>
 
-    <!-- Menu Giocatori -->
-    <section id="player-menu" class="menu hidden">
-      <h2>Team Roster</h2>
-      <div id="player-list"></div>
-    </section>
-  </main>
-
-  <footer>
-    <button onclick="goHome()">Home</button>
-    <button onclick="goBack()">Back</button>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Open the first tab by default
+        document.getElementsByClassName("tablink")[0].click();
+    </script>
 </body>
 </html>
