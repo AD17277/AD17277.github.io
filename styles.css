@@ -1,54 +1,109 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #000; /* Sfondo nero */
-  color: white;
-  text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-header {
-  padding: 20px;
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.pes2021-title {
-  font-size: 36px;
-  margin: 0;
+h1 {
+    text-align: center;
+    color: #333;
 }
 
-.converter-title {
-  font-size: 18px;
-  color: #ccc;
+.tabs {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
 }
 
-.menu {
-  margin: 20px;
+.tabs button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
 }
 
-.hidden {
-  display: none;
+.tabs button:hover {
+    background-color: #ddd;
 }
 
-button {
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
+.tabs button.active {
+    background-color: #ccc;
 }
 
-button:hover {
-  background-color: #666;
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border-top: none;
 }
 
-footer {
-  position: fixed;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
+.search-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-footer button {
-  margin: 0 10px;
+.search-container input[type=text] {
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: 1px solid #ccc;
+}
+
+.search-container button {
+    padding: 10px;
+    margin-top: 8px;
+    margin-left: 5px;
+    background: #4CAF50;
+    color: white;
+    font-size: 17px;
+    border: 1px solid #4CAF50;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+#settings {
+    text-align: center;
+}
+
+#apiKey {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: 1px solid #ccc;
 }
