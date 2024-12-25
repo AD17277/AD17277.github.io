@@ -131,3 +131,124 @@ def get_players():
 if __name__ == '__main__':
     update_players_table()  # Fetch and update player data on startup
     app.run(debug=True)
+def insert_team_into_db(team_data):
+    conn = get_db_connection()
+    try:
+        conn.execute('''
+            INSERT INTO teams (sofifa_id, name, league_id, league_name)
+            VALUES (?, ?, ?, ?)
+        ''', (
+            team_data['id'],
+            team_data['name'],
+            team_data['leagueId'],
+            team_data['league']['name']
+        ))
+        conn.commit()
+    except sqlite3.IntegrityError:
+        # Handle duplicate entry
+        pass
+    except Exception as e:
+        print(f"Error inserting team into DB: {e}")
+    finally:
+        conn.close()
+
+def update_teams_table():
+    # Fetch the latest roster ID
+    roster_data = fetch_data_from_sofifa(f"teams/latest?version={API_VERSION}")
+    if roster_data and 'data' in roster_data:
+        latest_roster = roster_data['data'][0]['latestRoster']
+    else:
+        print("Could not determine the latest roster.")
+        return
+
+    # Fetch all teams from SoFIFA and insert them into the database
+    limit = 100
+    offset = 0
+    while True:
+        teams_data = fetch_data_from_sofifa(f"teams?version={API_VERSION}&offset={offset}&limit={limit}")
+        if teams_data and 'data' in teams_data:
+            teams = teams_data['data']
+            for team in teams:
+                insert_team_into_db(team)
+            if len(teams) < limit:
+                # If the number of fetched teams is less than the limit, we've reached the last page
+                break
+            offset += limit
+        else:
+            print("Failed to fetch or no teams data found.")
+            break
+
+def insert_league_into_db(league_data):
+    conn = get_db_connection()
+    try:
+        conn.execute('''
+            INSERT INTO leagues (sofifa_id, name)
+            VALUES (?, ?)
+        ''', (
+            league_data['id'],
+            league_data['name']
+        ))
+        conn.commit()
+    except sqlite3.IntegrityError:
+        # Handle duplicate entry
+        pass
+    except Exception as e:
+        print(f"Error inserting league into DB: {e}")
+    finally:
+        conn.close()
+
+def update_leagues_table():
+    # Fetch all leagues from SoFIFA and insert them into the database
+    leagues_data = fetch_data_from_sofifa(f"leagues?version={API_VERSION}")
+    if leagues_data and 'data' in leagues_data:
+        leagues = leagues_data['data']
+        for league in leagues:
+            insert_league_into_db(league)
+    else:
+        print("Failed to fetch or no leagues data found.")
+
+# Create tables for teams and leagues
+def init_db_teams_leagues():
+    conn = get_db_connection()
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS teams (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            sofifa_id INTEGER UNIQUE,
+            name TEXT NOT NULL,
+            league_id INTEGER,
+            league_name TEXT
+        )
+    ''')
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS leagues (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            sofifa_id INTEGER UNIQUE,
+            name TEXT NOT NULL
+        )
+    ''')
+    conn.close()
+
+# Initialize the database for teams and leagues
+init_db_teams_leagues()
+
+# API endpoint to get all teams
+@app.route('/teams')
+def get_teams():
+    conn = get_db_connection()
+    teams = conn.execute('SELECT * FROM teams').fetchall()
+    conn.close()
+    return jsonify([dict(team) for team in teams])
+
+# API endpoint to get all leagues
+@app.route('/leagues')
+def get_leagues():
+    conn = get_db_connection()
+    leagues = conn.execute('SELECT * FROM leagues').fetchall()
+    conn.close()
+    return jsonify([dict(league) for league in leagues])
+
+if __name__ == '__main__':
+    update_players_table()
+    update_teams_table()
+    update_leagues_table()
+    app.run(debug=True)
