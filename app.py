@@ -110,15 +110,6 @@ def fetch_data_from_sofifa(endpoint, headers=None):
         return None
 
 def map_pes_attributes(player_data):
-    """
-    Maps FIFA/FC 25 player attributes to PES 21 attributes.
-
-    Args:
-        player_data (dict): A dictionary containing player data from SoFIFA.
-
-    Returns:
-        dict: A dictionary containing the mapped PES 21 attributes.
-    """
     pes_attributes = {}
 
     # Map attributes based on the provided mapping
