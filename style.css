@@ -39,6 +39,7 @@ h1 {
     border-radius: 5px 5px 0 0;
     margin: 0 5px;
     color: #495057;
+    white-space: nowrap; /* Impedisce al testo di andare a capo */
 }
 
 .tabs button:hover {
@@ -122,6 +123,7 @@ tr:hover {
     border: 1px solid #ced4da;
     border-radius: 5px;
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -132,9 +134,9 @@ tr:hover {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -143,18 +145,18 @@ tr:hover {
     max-width: 500px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .close-modal {
+}
+
+.close-modal {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  .close-modal:hover,
-  .close-modal:focus {
+}
+
+.close-modal:hover,
+.close-modal:focus {
     color: black;
     text-decoration: none;
-  }
+}
