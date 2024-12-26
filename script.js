@@ -655,8 +655,24 @@ function populateTable(tableId, data) {
     }
     data.forEach(item => {
         var row = table.insertRow();
-        // Customize this part according to your data structure
-        Object.values(item).forEach(text => {
+        // Add a link to the player/team details
+        var idCell = row.insertCell();
+        if (tableId === 'playersTable') {
+            var idLink = document.createElement('a');
+            idLink.textContent = item.id;
+            idLink.href = "javascript:void(0)";
+            idLink.onclick = function() { showPlayerDetails(item.id); };
+            idCell.appendChild(idLink);
+        } else if (tableId === 'teamsTable') {
+            var idLink = document.createElement('a');
+            idLink.textContent = item.id;
+            idLink.href = "javascript:void(0)";
+            idLink.onclick = function() { showTeamDetails(item.id); };
+            idCell.appendChild(idLink);
+        }
+
+        // Add other cells
+        Object.values(item).slice(1).forEach(text => {
             var cell = row.insertCell();
             var textNode = document.createTextNode(text);
             cell.appendChild(textNode);
