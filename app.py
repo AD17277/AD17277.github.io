@@ -37,7 +37,45 @@ def init_db():
             club_logo_url TEXT,
             nation_flag_url TEXT,
             overall_pes INTEGER,
-            potential_pes INTEGER
+            potential_pes INTEGER,
+            offensive_awareness INTEGER,
+            ball_control INTEGER,
+            dribbling INTEGER,
+            tight_possession INTEGER,
+            low_pass INTEGER,
+            lofted_pass INTEGER,
+            finishing INTEGER,
+            heading INTEGER,
+            place_kicking INTEGER,
+            curl INTEGER,
+            speed INTEGER,
+            acceleration INTEGER,
+            kicking_power INTEGER,
+            jump INTEGER,
+            physical_contact INTEGER,
+            balance INTEGER,
+            stamina INTEGER,
+            defensive_awareness INTEGER,
+            ball_winning INTEGER,
+            aggression INTEGER,
+            gk_awareness INTEGER,
+            gk_catching INTEGER,
+            gk_clearing INTEGER,
+            gk_reflexes INTEGER,
+            gk_reach INTEGER,
+            weak_foot_usage INTEGER,
+            weak_foot_accuracy INTEGER,
+            form INTEGER,
+            injury_resistance INTEGER,
+            attacking_crossing INTEGER,
+            attacking_finishing INTEGER,
+            attacking_heading_accuracy INTEGER,
+            attacking_short_passing INTEGER,
+            skill_long_passing INTEGER,
+            power_shot_power INTEGER,
+            power_long_shots INTEGER,
+            mentality_vision INTEGER,
+            mentality_penalties INTEGER
         )
     ''')
     conn.execute('''
@@ -72,79 +110,62 @@ def fetch_data_from_sofifa(endpoint, headers=None):
         return None
 
 def map_pes_attributes(player_data):
-    # Implement your PES attribute mapping logic here
-    # This is a placeholder function
-    skill_map = {
-        'skill_moves': 'skillMoves',
-        'dribbling': 'ballControl',
-        'ball_control': 'ballControl',
-        'finishing': 'finishing',
-        'long_shots': 'longShots',
-        'shot_power': 'kickingPower',
-        'volleys': 'finishing',
-        'curve': 'curl',
-        'free_kick_accuracy': 'placeKicking',
-        'short_passing': 'lowPass',
-        'long_passing': 'loftedPass',
-        'crossing': 'loftedPass',
-        'heading_accuracy': 'header',
-        'jumping': 'jump',
-        'stamina': 'stamina',
-        'strength': 'physicalContact',
-        'agility': 'balance',
-        'balance': 'balance',
-        'reactions': 'offensiveAwareness',
-        'interceptions': 'defensiveAwareness',
-        'positioning': 'offensiveAwareness',
-        'vision': 'lowPass',
-        'penalties': 'placeKicking',
-        'composure': 'form',
-        'marking': 'defensiveAwareness',
-        'standing_tackle': 'ballWinning',
-        'sliding_tackle': 'ballWinning',
-        'gk_diving': 'gkAwareness',
-        'gk_handling': 'gkCatching',
-        'gk_kicking': 'gkClearing',
-        'gk_reflexes': 'gkReflexes',
-        'gk_positioning': 'gkAwareness',
-        "pace": "speed",
-        "acceleration": 'acceleration',
-        "sprint_speed": "speed",
-        'defending': 'ballWinning',
-        'passing': 'lowPass',
-        'physic': 'physicalContact',
-        'shooting': 'finishing'
-        # Add more mappings as needed
-    }
+    """
+    Maps FIFA/FC 25 player attributes to PES 21 attributes.
 
+    Args:
+        player_data (dict): A dictionary containing player data from SoFIFA.
+
+    Returns:
+        dict: A dictionary containing the mapped PES 21 attributes.
+    """
     pes_attributes = {}
 
-    # Direct mapping for attributes that have a direct equivalent
-    for sofifa_attr, pes_attr in skill_map.items():
-        if sofifa_attr in player_data:
-            pes_attributes[pes_attr] = player_data[sofifa_attr]
+    # Map attributes based on the provided mapping
+    pes_attributes['overall_pes'] = player_data.get('overall')
+    pes_attributes['potential_pes'] = player_data.get('potential')
+    pes_attributes['offensive_awareness'] = player_data.get('mentality_positioning')
+    pes_attributes['ball_control'] = player_data.get('dribbling')
+    pes_attributes['dribbling'] = player_data.get('dribbling')
+    pes_attributes['tight_possession'] = player_data.get('dribbling')
+    pes_attributes['low_pass'] = player_data.get('attacking_short_passing')
+    pes_attributes['lofted_pass'] = player_data.get('skill_long_passing')
+    pes_attributes['finishing'] = player_data.get('attacking_finishing')
+    pes_attributes['heading'] = player_data.get('attacking_heading_accuracy')
+    pes_attributes['place_kicking'] = player_data.get('skill_fk_accuracy')
+    pes_attributes['curl'] = player_data.get('skill_curve')
+    pes_attributes['speed'] = player_data.get('movement_sprint_speed')
+    pes_attributes['acceleration'] = player_data.get('movement_acceleration')
+    pes_attributes['kicking_power'] = player_data.get('power_shot_power')
+    pes_attributes['jump'] = player_data.get('power_jumping')
+    pes_attributes['physical_contact'] = player_data.get('power_strength')
+    pes_attributes['balance'] = player_data.get('movement_balance')
+    pes_attributes['stamina'] = player_data.get('endurance')
+    pes_attributes['defensive_awareness'] = player_data.get('mentality_interceptions')
+    pes_attributes['ball_winning'] = player_data.get('defending_standing_tackle')
+    pes_attributes['aggression'] = player_data.get('mentality_aggression')
+    pes_attributes['gk_awareness'] = player_data.get('goalkeeping_diving')
+    pes_attributes['gk_catching'] = player_data.get('goalkeeping_handling')
+    pes_attributes['gk_clearing'] = player_data.get('goalkeeping_kicking')
+    pes_attributes['gk_reflexes'] = player_data.get('goalkeeping_reflexes')
+    pes_attributes['gk_reach'] = player_data.get('goalkeeping_positioning')
+    pes_attributes['weak_foot_usage'] = player_data.get('weak_foot')
+    pes_attributes['weak_foot_accuracy'] = player_data.get('weak_foot')
+    pes_attributes['attacking_crossing'] = player_data.get('attacking_crossing')
+    pes_attributes['attacking_finishing'] = player_data.get('attacking_finishing')
+    pes_attributes['attacking_heading_accuracy'] = player_data.get('attacking_heading_accuracy')
+    pes_attributes['attacking_short_passing'] = player_data.get('attacking_short_passing')
+    pes_attributes['skill_long_passing'] = player_data.get('skill_long_passing')
+    pes_attributes['power_shot_power'] = player_data.get('power_shot_power')
+    pes_attributes['power_long_shots'] = player_data.get('power_long_shots')
+    pes_attributes['mentality_vision'] = player_data.get('mentality_vision')
+    pes_attributes['mentality_penalties'] = player_data.get('mentality_penalties')
 
-    # Special logic for specific attributes
-    if 'attacking_finishing' in player_data:
-      pes_attributes['finishing'] = player_data['attacking_finishing']
-
-    if 'mentality_interceptions' in player_data:
-      pes_attributes['ballWinning'] = player_data['mentality_interceptions']
+    # Placeholder for specific PES skills
+    pes_attributes['playing_style'] = None  # Placeholder, set based on SoFIFA data if possible
+    pes_attributes['com_playing_styles'] = []  # Placeholder, set based on SoFIFA data if possible
+    pes_attributes['player_skills'] = []  # Placeholder, set based on SoFIFA data if possible
     
-    if 'defending_marking_awareness' in player_data:
-      pes_attributes['defensiveAwareness'] = player_data['defending_marking_awareness']
-
-    if 'power_jumping' in player_data:
-      pes_attributes['jump'] = player_data['power_jumping']
-
-    if 'mentality_aggression' in player_data:
-      pes_attributes['aggression'] = player_data['mentality_aggression']
-
-    # Weak Foot Usage and Accuracy (example logic, adjust as needed)
-    if 'weak_foot' in player_data:
-        pes_attributes['weakFootUsage'] = player_data['weak_foot']
-        pes_attributes['weakFootAccuracy'] = player_data['weak_foot']
-
     # Form (example logic, adjust as needed)
     if 'overall' in player_data:
         # Example: Map overall to form, with higher overall indicating better form
@@ -161,47 +182,12 @@ def map_pes_attributes(player_data):
     if 'overall' in player_data:
         # Example: Map overall to injury resistance, with higher overall indicating better resistance
         if player_data['overall'] >= 85:
-            pes_attributes['injuryResistance'] = 3
+            pes_attributes['injury_resistance'] = 3
         elif player_data['overall'] >= 75:
-            pes_attributes['injuryResistance'] = 2
+            pes_attributes['injury_resistance'] = 2
         else:
-            pes_attributes['injuryResistance'] = 1
+            pes_attributes['injury_resistance'] = 1
 
-    # Map additional attributes
-    if 'attacking_crossing' in player_data:
-        pes_attributes['crossing'] = player_data['attacking_crossing']
-
-    if 'attacking_finishing' in player_data:
-        pes_attributes['finishing'] = player_data['attacking_finishing']
-
-    if 'attacking_heading_accuracy' in player_data:
-        pes_attributes['header'] = player_data['attacking_heading_accuracy']
-
-    if 'attacking_short_passing' in player_data:
-        pes_attributes['lowPass'] = player_data['attacking_short_passing']
-
-    if 'skill_long_passing' in player_data:
-        pes_attributes['loftedPass'] = player_data['skill_long_passing']
-
-    if 'power_shot_power' in player_data:
-        pes_attributes['kickingPower'] = player_data['power_shot_power']
-
-    if 'power_long_shots' in player_data:
-        pes_attributes['longShots'] = player_data['power_long_shots']
-
-    if 'mentality_vision' in player_data:
-        pes_attributes['vision'] = player_data['mentality_vision']
-
-    if 'mentality_penalties' in player_data:
-        pes_attributes['penalties'] = player_data['mentality_penalties']
-
-    # ... (Add mappings for other attributes)
-
-    # Example for handling specific PES skills (you'll need to expand this based on your needs)
-    pes_attributes['playing_style'] = None  # Placeholder, set based on SoFIFA data if possible
-    pes_attributes['com_playing_styles'] = []  # Placeholder, set based on SoFIFA data if possible
-    pes_attributes['player_skills'] = []  # Placeholder, set based on SoFIFA data if possible
-    
     return pes_attributes
 
 def insert_player_into_db(player_data):
@@ -209,8 +195,21 @@ def insert_player_into_db(player_data):
     try:
         pes_attributes = map_pes_attributes(player_data)
         conn.execute('''
-            INSERT INTO players (sofifa_id, name, overall, potential, positions, nationality, club, wage_eur, player_face_url, club_logo_url, nation_flag_url, overall_pes, potential_pes)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO players (
+                sofifa_id, name, overall, potential, positions, nationality, club, wage_eur,
+                player_face_url, club_logo_url, nation_flag_url, overall_pes, potential_pes,
+                offensive_awareness, ball_control, dribbling, tight_possession, low_pass,
+                lofted_pass, finishing, heading, place_kicking, curl, speed, acceleration,
+                kicking_power, jump, physical_contact, balance, stamina, defensive_awareness,
+                ball_winning, aggression, gk_awareness, gk_catching, gk_clearing, gk_reflexes,
+                gk_reach, weak_foot_usage, weak_foot_accuracy, form, injury_resistance,
+                attacking_crossing, attacking_finishing, attacking_heading_accuracy,
+                attacking_short_passing, skill_long_passing, power_shot_power, power_long_shots,
+                mentality_vision, mentality_penalties
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                    ?, ?, ?, ?, ?, ?, ?)
         ''', (
             player_data['sofifa_id'],
             player_data['short_name'],
@@ -224,19 +223,66 @@ def insert_player_into_db(player_data):
             player_data['club_logo_url'],
             player_data['nation_flag_url'],
             pes_attributes['overall_pes'],
-            pes_attributes['potential_pes']
+            pes_attributes['potential_pes'],
+            pes_attributes['offensive_awareness'],
+            pes_attributes['ball_control'],
+            pes_attributes['dribbling'],
+            pes_attributes['tight_possession'],
+            pes_attributes['low_pass'],
+            pes_attributes['lofted_pass'],
+            pes_attributes['finishing'],
+            pes_attributes['heading'],
+            pes_attributes['place_kicking'],
+            pes_attributes['curl'],
+            pes_attributes['speed'],
+            pes_attributes['acceleration'],
+            pes_attributes['kicking_power'],
+            pes_attributes['jump'],
+            pes_attributes['physical_contact'],
+            pes_attributes['balance'],
+            pes_attributes['stamina'],
+            pes_attributes['defensive_awareness'],
+            pes_attributes['ball_winning'],
+            pes_attributes['aggression'],
+            pes_attributes['gk_awareness'],
+            pes_attributes['gk_catching'],
+            pes_attributes['gk_clearing'],
+            pes_attributes['gk_reflexes'],
+            pes_attributes['gk_reach'],
+            pes_attributes['weak_foot_usage'],
+            pes_attributes['weak_foot_accuracy'],
+            pes_attributes['form'],
+            pes_attributes['injury_resistance'],
+            pes_attributes['attacking_crossing'],
+            pes_attributes['attacking_finishing'],
+            pes_attributes['attacking_heading_accuracy'],
+            pes_attributes['attacking_short_passing'],
+            pes_attributes['skill_long_passing'],
+            pes_attributes['power_shot_power'],
+            pes_attributes['power_long_shots'],
+            pes_attributes['mentality_vision'],
+            pes_attributes['mentality_penalties']
         ))
         conn.commit()
     except sqlite3.IntegrityError:
-        # Handle duplicate entry
-        pass
+        print(f"Player with sofifa_id {player_data['sofifa_id']} already exists in the database.")
     except Exception as e:
         print(f"Error inserting player into DB: {e}")
     finally:
         conn.close()
 
 def update_players_table():
-    limit = 100
+    conn = get_db_connection()
+    # Fetch the latest roster ID
+    roster_data = fetch_data_from_sofifa(f"teams/latest?version={API_VERSION}")
+    if roster_data and 'data' in roster_data:
+        latest_roster = roster_data['data'][0]['latestRoster']
+    else:
+        print("Could not determine the latest roster.")
+        return
+
+    # Fetch all players from SoFIFA and insert them into the database
+    limit = 100  # Reduced limit for testing
     offset = 0
     while True:
         players_data = fetch_data_from_sofifa(f"players?version={API_VERSION}&offset={offset}&limit={limit}")
@@ -245,11 +291,13 @@ def update_players_table():
             for player in players:
                 insert_player_into_db(player)
             if len(players) < limit:
+                # If the number of fetched players is less than the limit, we've reached the last page
                 break
             offset += limit
         else:
             print("Failed to fetch or no players data found.")
             break
+    conn.close()
 
 def insert_team_into_db(team_data):
     conn = get_db_connection()
