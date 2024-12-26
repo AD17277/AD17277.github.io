@@ -55,14 +55,146 @@ def fetch_data_from_sofifa(endpoint, headers=None):
         return None
 
 def map_pes_attributes(player_data):
-    # Implement your PES attribute mapping logic here
-    # This is a placeholder function
-    return {
-        'overall_pes': player_data['overall'],  # Placeholder
-        'potential_pes': player_data['potential'],  # Placeholder
-        # Add more attribute mappings as needed
+    """
+    Maps FIFA/FC 25 player attributes to PES 21 attributes.
+
+    Args:
+        player_data (dict): A dictionary containing player data from SoFIFA.
+
+    Returns:
+        dict: A dictionary containing the mapped PES 21 attributes.
+    """
+
+    # Placeholder for skill mapping (SoFIFA attribute -> PES skill)
+    skill_map = {
+        'skill_moves': 'skillMoves',
+        'dribbling': 'ballControl',
+        'ball_control': 'ballControl',
+        'finishing': 'finishing',
+        'long_shots': 'longShots',
+        'shot_power': 'kickingPower',
+        'volleys': 'finishing',
+        'curve': 'curl',
+        'free_kick_accuracy': 'placeKicking',
+        'short_passing': 'lowPass',
+        'long_passing': 'loftedPass',
+        'crossing': 'loftedPass',
+        'heading_accuracy': 'header',
+        'jumping': 'jump',
+        'stamina': 'stamina',
+        'strength': 'physicalContact',
+        'agility': 'balance',
+        'balance': 'balance',
+        'reactions': 'offensiveAwareness',
+        'interceptions': 'defensiveAwareness',
+        'positioning': 'offensiveAwareness',
+        'vision': 'lowPass',
+        'penalties': 'placeKicking',
+        'composure': 'form',
+        'marking': 'defensiveAwareness',
+        'standing_tackle': 'ballWinning',
+        'sliding_tackle': 'ballWinning',
+        'gk_diving': 'gkAwareness',
+        'gk_handling': 'gkCatching',
+        'gk_kicking': 'gkClearing',
+        'gk_reflexes': 'gkReflexes',
+        'gk_positioning': 'gkAwareness',
+        "pace": "speed",
+        "acceleration": 'acceleration',
+        "sprint_speed": "speed",
+        'defending': 'ballWinning',
+        'passing': 'lowPass',
+        'physic': 'physicalContact',
+        'shooting': 'finishing'
+        # Add more mappings as needed
     }
 
+    pes_attributes = {}
+
+    # Direct mapping for attributes that have a direct equivalent
+    for sofifa_attr, pes_attr in skill_map.items():
+        if sofifa_attr in player_data:
+            pes_attributes[pes_attr] = player_data[sofifa_attr]
+
+    # Special logic for specific attributes
+    if 'attacking_finishing' in player_data:
+      pes_attributes['finishing'] = player_data['attacking_finishing']
+
+    if 'mentality_interceptions' in player_data:
+      pes_attributes['ballWinning'] = player_data['mentality_interceptions']
+    
+    if 'defending_marking_awareness' in player_data:
+      pes_attributes['defensiveAwareness'] = player_data['defending_marking_awareness']
+
+    if 'power_jumping' in player_data:
+      pes_attributes['jump'] = player_data['power_jumping']
+
+    if 'mentality_aggression' in player_data:
+      pes_attributes['aggression'] = player_data['mentality_aggression']
+
+    # Weak Foot Usage and Accuracy (example logic, adjust as needed)
+    if 'weak_foot' in player_data:
+        pes_attributes['weakFootUsage'] = player_data['weak_foot']
+        pes_attributes['weakFootAccuracy'] = player_data['weak_foot']
+
+    # Form (example logic, adjust as needed)
+    if 'overall' in player_data:
+        # Example: Map overall to form, with higher overall indicating better form
+        if player_data['overall'] >= 80:
+            pes_attributes['form'] = 7
+        elif player_data['overall'] >= 70:
+            pes_attributes['form'] = 6
+        elif player_data['overall'] >= 60:
+            pes_attributes['form'] = 5
+        else:
+            pes_attributes['form'] = 4
+
+    # Injury Resistance (example logic, adjust as needed)
+    if 'overall' in player_data:
+        # Example: Map overall to injury resistance, with higher overall indicating better resistance
+        if player_data['overall'] >= 85:
+            pes_attributes['injuryResistance'] = 3
+        elif player_data['overall'] >= 75:
+            pes_attributes['injuryResistance'] = 2
+        else:
+            pes_attributes['injuryResistance'] = 1
+
+    # Map additional attributes
+    if 'attacking_crossing' in player_data:
+        pes_attributes['crossing'] = player_data['attacking_crossing']
+
+    if 'attacking_finishing' in player_data:
+        pes_attributes['finishing'] = player_data['attacking_finishing']
+
+    if 'attacking_heading_accuracy' in player_data:
+        pes_attributes['header'] = player_data['attacking_heading_accuracy']
+
+    if 'attacking_short_passing' in player_data:
+        pes_attributes['lowPass'] = player_data['attacking_short_passing']
+
+    if 'skill_long_passing' in player_data:
+        pes_attributes['loftedPass'] = player_data['skill_long_passing']
+
+    if 'power_shot_power' in player_data:
+        pes_attributes['kickingPower'] = player_data['power_shot_power']
+
+    if 'power_long_shots' in player_data:
+        pes_attributes['longShots'] = player_data['power_long_shots']
+
+    if 'mentality_vision' in player_data:
+        pes_attributes['vision'] = player_data['mentality_vision']
+
+    if 'mentality_penalties' in player_data:
+        pes_attributes['penalties'] = player_data['mentality_penalties']
+
+    # ... (Add mappings for other attributes)
+
+    # Example for handling specific PES skills (you'll need to expand this based on your needs)
+    pes_attributes['playing_style'] = None  # Placeholder, set based on SoFIFA data if possible
+    pes_attributes['com_playing_styles'] = []  # Placeholder, set based on SoFIFA data if possible
+    pes_attributes['player_skills'] = []  # Placeholder, set based on SoFIFA data if possible
+    
+    return pes_attributes
 def insert_player_into_db(player_data):
     conn = get_db_connection()
     try:
