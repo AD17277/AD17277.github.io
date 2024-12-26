@@ -52,16 +52,15 @@ function sortTable(tableId, column) {
 }
 
 function searchPlayers() {
-  // Get the input value and convert it to lowercase for case-insensitive search
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("playerSearch");
   filter = input.value.toUpperCase();
   table = document.getElementById("playersTable");
   tr = table.getElementsByTagName("tr");
 
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1]; // Assuming the name is in the second column
+  for (i = 1; i < tr.length; i++) {
+    // Start from the second row (index 1) to skip the header row
+    td = tr[i].getElementsByTagName("td")[1]; // Name is in the second column
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -74,15 +73,15 @@ function searchPlayers() {
 }
 
 function searchTeams() {
-  // Same logic as searchPlayers, but for teams
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("teamSearch");
   filter = input.value.toUpperCase();
   table = document.getElementById("teamsTable");
   tr = table.getElementsByTagName("tr");
 
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1]; // Assuming the name is in the second column
+  for (i = 1; i < tr.length; i++) {
+    // Start from the second row (index 1) to skip the header row
+    td = tr[i].getElementsByTagName("td")[1]; // Name is in the second column
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
