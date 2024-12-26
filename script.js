@@ -701,7 +701,21 @@ function showPlayerDetails(playerId) {
     })
     .catch(error => console.error('Error:', error));
 }
+function showTeamDetails(teamId) {
+    fetch(`/team/${teamId}`)
+    .then(response => response.json())
+    .then(team => {
+        // Qui costruisci il markup per visualizzare i dettagli del team, come hai fatto per i giocatori
+        document.getElementById("playerDetailsContent").innerHTML = `
+            <h3>${team.name}</h3>
+            <p>League: ${team.league_name}</p>
+            `;
 
+        // Show the modal
+        document.getElementById("playerModal").style.display = "block";
+    })
+    .catch(error => console.error('Error:', error));
+}
 function closeModal() {
     document.getElementById("playerModal").style.display = "none";
 }
