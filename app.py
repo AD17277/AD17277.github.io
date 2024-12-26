@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import sqlite3
 import requests
 import json
@@ -35,10 +35,27 @@ def init_db():
             wage_eur INTEGER,
             player_face_url TEXT,
             club_logo_url TEXT,
-            nation_flag_url TEXT
+            nation_flag_url TEXT,
+            overall_pes INTEGER,
+            potential_pes INTEGER
         )
     ''')
-    # Create other tables (teams, leagues, etc.) similarly
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS teams (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            sofifa_id INTEGER UNIQUE,
+            name TEXT NOT NULL,
+            league_id INTEGER,
+            league_name TEXT
+        )
+    ''')
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS leagues (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            sofifa_id INTEGER UNIQUE,
+            name TEXT NOT NULL
+        )
+    ''')
     conn.close()
 
 # Initialize the database
@@ -55,17 +72,8 @@ def fetch_data_from_sofifa(endpoint, headers=None):
         return None
 
 def map_pes_attributes(player_data):
-    """
-    Maps FIFA/FC 25 player attributes to PES 21 attributes.
-
-    Args:
-        player_data (dict): A dictionary containing player data from SoFIFA.
-
-    Returns:
-        dict: A dictionary containing the mapped PES 21 attributes.
-    """
-
-    # Placeholder for skill mapping (SoFIFA attribute -> PES skill)
+    # Implement your PES attribute mapping logic here
+    # This is a placeholder function
     skill_map = {
         'skill_moves': 'skillMoves',
         'dribbling': 'ballControl',
@@ -195,25 +203,28 @@ def map_pes_attributes(player_data):
     pes_attributes['player_skills'] = []  # Placeholder, set based on SoFIFA data if possible
     
     return pes_attributes
+
 def insert_player_into_db(player_data):
     conn = get_db_connection()
     try:
         pes_attributes = map_pes_attributes(player_data)
         conn.execute('''
-            INSERT INTO players (sofifa_id, name, overall, potential, positions, nationality, club, wage_eur, player_face_url, club_logo_url, nation_flag_url)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO players (sofifa_id, name, overall, potential, positions, nationality, club, wage_eur, player_face_url, club_logo_url, nation_flag_url, overall_pes, potential_pes)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             player_data['sofifa_id'],
             player_data['short_name'],
-            pes_attributes['overall_pes'],
-            pes_attributes['potential_pes'],
+            player_data['overall'],
+            player_data['potential'],
             player_data['player_positions'],
             player_data['nationality_name'],
             player_data['club_name'],
             player_data['wage_eur'],
             player_data['player_face_url'],
             player_data['club_logo_url'],
-            player_data['nation_flag_url']
+            player_data['nation_flag_url'],
+            pes_attributes['overall_pes'],
+            pes_attributes['potential_pes']
         ))
         conn.commit()
     except sqlite3.IntegrityError:
@@ -225,15 +236,6 @@ def insert_player_into_db(player_data):
         conn.close()
 
 def update_players_table():
-    # Fetch the latest roster ID
-    roster_data = fetch_data_from_sofifa(f"teams/latest?version={API_VERSION}")
-    if roster_data and 'data' in roster_data:
-        latest_roster = roster_data['data'][0]['latestRoster']
-    else:
-        print("Could not determine the latest roster.")
-        return
-
-    # Fetch all players from SoFIFA and insert them into the database
     limit = 100
     offset = 0
     while True:
@@ -243,26 +245,12 @@ def update_players_table():
             for player in players:
                 insert_player_into_db(player)
             if len(players) < limit:
-                # If the number of fetched players is less than the limit, we've reached the last page
                 break
             offset += limit
         else:
             print("Failed to fetch or no players data found.")
             break
 
-# API endpoint to get all players
-@app.route('/players')
-def get_players():
-    conn = get_db_connection()
-    players = conn.execute('SELECT * FROM players').fetchall()
-    conn.close()
-    return jsonify([dict(player) for player in players])
-
-# Add more API endpoints for teams, leagues, etc.
-
-if __name__ == '__main__':
-    update_players_table()  # Fetch and update player data on startup
-    app.run(debug=True)
 def insert_team_into_db(team_data):
     conn = get_db_connection()
     try:
@@ -363,6 +351,14 @@ def init_db_teams_leagues():
 # Initialize the database for teams and leagues
 init_db_teams_leagues()
 
+# API endpoint to get all players
+@app.route('/players')
+def get_players():
+    conn = get_db_connection()
+    players = conn.execute('SELECT * FROM players').fetchall()
+    conn.close()
+    return jsonify([dict(player) for player in players])
+
 # API endpoint to get all teams
 @app.route('/teams')
 def get_teams():
@@ -379,11 +375,6 @@ def get_leagues():
     conn.close()
     return jsonify([dict(league) for league in leagues])
 
-if __name__ == '__main__':
-    update_players_table()
-    update_teams_table()
-    update_leagues_table()
-    app.run(debug=True)
 @app.route('/player/<int:player_id>')
 def get_player(player_id):
     conn = get_db_connection()
@@ -392,7 +383,8 @@ def get_player(player_id):
     if player is None:
         return jsonify({'error': 'Player not found'}), 404
     return jsonify(dict(player))
-    @app.route('/team/<int:team_id>')
+
+@app.route('/team/<int:team_id>')
 def get_team(team_id):
     conn = get_db_connection()
     team = conn.execute('SELECT * FROM teams WHERE sofifa_id = ?', (team_id,)).fetchone()
@@ -400,3 +392,9 @@ def get_team(team_id):
     if team is None:
         return jsonify({'error': 'Team not found'}), 404
     return jsonify(dict(team))
+
+if __name__ == '__main__':
+    update_players_table()
+    update_teams_table()
+    update_leagues_table()
+    app.run(debug=True)
