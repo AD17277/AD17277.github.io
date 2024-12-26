@@ -679,3 +679,29 @@ function populateTable(tableId, data) {
         });
     });
 }
+function showPlayerDetails(playerId) {
+  // Fetch player details from the backend using the playerId
+  fetch(`/player/${playerId}`)
+    .then(response => response.json())
+    .then(player => {
+      // Populate the modal with player details
+      document.getElementById("playerDetailsContent").innerHTML = `
+        <h3>${player.name}</h3>
+        <p>Overall: ${player.overall_pes}</p>
+        <p>Potential: ${player.potential_pes}</p>
+        <p>Nationality: ${player.nationality}</p>
+        <p>Position: ${player.positions}</p>
+        <p>Club: ${player.club}</p>
+        <p>Wage: ${player.wage_eur}</p>
+        <img src="${player.player_face_url}" alt="${player.name} face">
+        `;
+
+      // Show the modal
+      document.getElementById("playerModal").style.display = "block";
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function closeModal() {
+    document.getElementById("playerModal").style.display = "none";
+}
