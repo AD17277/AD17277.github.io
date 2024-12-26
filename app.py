@@ -384,3 +384,19 @@ if __name__ == '__main__':
     update_teams_table()
     update_leagues_table()
     app.run(debug=True)
+@app.route('/player/<int:player_id>')
+def get_player(player_id):
+    conn = get_db_connection()
+    player = conn.execute('SELECT * FROM players WHERE sofifa_id = ?', (player_id,)).fetchone()
+    conn.close()
+    if player is None:
+        return jsonify({'error': 'Player not found'}), 404
+    return jsonify(dict(player))
+    @app.route('/team/<int:team_id>')
+def get_team(team_id):
+    conn = get_db_connection()
+    team = conn.execute('SELECT * FROM teams WHERE sofifa_id = ?', (team_id,)).fetchone()
+    conn.close()
+    if team is None:
+        return jsonify({'error': 'Team not found'}), 404
+    return jsonify(dict(team))
